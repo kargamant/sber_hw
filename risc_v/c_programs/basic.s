@@ -12,8 +12,8 @@ foo:
 	addi	s0, sp, 32
 	sw	a0, -16(s0)
 	sw	a1, -20(s0)
-	lw	a0, -16(s0)
-	lw	a1, -20(s0)
+	lw	a1, -16(s0)
+	lw	a0, -20(s0)
 	bge	a0, a1, .LBB0_2
 	j	.LBB0_1
 .LBB0_1:

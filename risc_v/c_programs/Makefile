@@ -1,14 +1,24 @@
 CC      = clang-12
+DISASM  = llvm-objdump-12 
 TARGET  = riscv32-unknown-elf
 ARCH    = rv32i
 ABI     = ilp32
-OPTIM	?= O0
-CFLAGS  = --target=$(TARGET) -march=$(ARCH) -mabi=$(ABI) -nostdlib -$(OPTIM) -S
+OPTIM   ?= O0
+CFLAGS  = --target=$(TARGET) -march=$(ARCH) -mabi=$(ABI) -nostdlib -$(OPTIM)
 
 FILE    ?= basic
 
-$(FILE).s: $(FILE).c
-		$(CC) $(CFLAGS) $< -o $@
+all: object asm disasm
+
+object:
+	$(CC) $(CFLAGS) -c $(FILE).c -o $(FILE).o
+
+asm:
+	$(CC) $(CFLAGS) -S $(FILE).c -o $(FILE).s
+
+# without aliases
+disasm:
+	$(DISASM) -d -M no-aliases $(FILE).o > $(FILE)_disasm.s
 
 clean:
-		rm -f $(FILE).s
+	rm -f *.o *.s
