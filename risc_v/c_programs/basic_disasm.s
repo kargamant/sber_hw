@@ -37,20 +37,37 @@ Disassembly of section .text:
    11110: 13 01 01 02  	addi	sp, sp, 32
    11114: 67 80 00 00  	jalr	zero, 0(ra)
 
-00011118 <main>:
+00011118 <bar_1>:
    11118: 13 01 01 ff  	addi	sp, sp, -16
    1111c: 23 26 11 00  	sw	ra, 12(sp)
    11120: 23 24 81 00  	sw	s0, 8(sp)
    11124: 13 04 01 01  	addi	s0, sp, 16
-   11128: 13 05 00 00  	addi	a0, zero, 0
-   1112c: 23 28 a4 fe  	sw	a0, -16(s0)
-   11130: 23 2a a4 fe  	sw	a0, -12(s0)
-   11134: 13 05 10 00  	addi	a0, zero, 1
-   11138: 93 05 20 00  	addi	a1, zero, 2
-   1113c: 97 00 00 00  	auipc	ra, 0
-   11140: e7 80 80 f7  	jalr	ra, -136(ra)
-   11144: 03 25 04 ff  	lw	a0, -16(s0)
-   11148: 03 24 81 00  	lw	s0, 8(sp)
-   1114c: 83 20 c1 00  	lw	ra, 12(sp)
-   11150: 13 01 01 01  	addi	sp, sp, 16
-   11154: 67 80 00 00  	jalr	zero, 0(ra)
+   11128: 23 2a a4 fe  	sw	a0, -12(s0)
+   1112c: 23 28 b4 fe  	sw	a1, -16(s0)
+   11130: 03 25 44 ff  	lw	a0, -12(s0)
+   11134: 83 25 04 ff  	lw	a1, -16(s0)
+   11138: 97 00 00 00  	auipc	ra, 0
+   1113c: e7 80 c0 f7  	jalr	ra, -132(ra)
+   11140: 13 15 15 00  	slli	a0, a0, 1
+   11144: 03 24 81 00  	lw	s0, 8(sp)
+   11148: 83 20 c1 00  	lw	ra, 12(sp)
+   1114c: 13 01 01 01  	addi	sp, sp, 16
+   11150: 67 80 00 00  	jalr	zero, 0(ra)
+
+00011154 <main>:
+   11154: 13 01 01 ff  	addi	sp, sp, -16
+   11158: 23 26 11 00  	sw	ra, 12(sp)
+   1115c: 23 24 81 00  	sw	s0, 8(sp)
+   11160: 13 04 01 01  	addi	s0, sp, 16
+   11164: 13 05 00 00  	addi	a0, zero, 0
+   11168: 23 28 a4 fe  	sw	a0, -16(s0)
+   1116c: 23 2a a4 fe  	sw	a0, -12(s0)
+   11170: 13 05 10 00  	addi	a0, zero, 1
+   11174: 93 05 20 00  	addi	a1, zero, 2
+   11178: 97 00 00 00  	auipc	ra, 0
+   1117c: e7 80 c0 f3  	jalr	ra, -196(ra)
+   11180: 03 25 04 ff  	lw	a0, -16(s0)
+   11184: 03 24 81 00  	lw	s0, 8(sp)
+   11188: 83 20 c1 00  	lw	ra, 12(sp)
+   1118c: 13 01 01 01  	addi	sp, sp, 16
+   11190: 67 80 00 00  	jalr	zero, 0(ra)

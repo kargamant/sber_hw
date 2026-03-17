@@ -37,6 +37,27 @@ foo:
 .Lfunc_end0:
 	.size	foo, .Lfunc_end0-foo
 
+	.globl	bar_1
+	.p2align	2
+	.type	bar_1,@function
+bar_1:
+	addi	sp, sp, -16
+	sw	ra, 12(sp)
+	sw	s0, 8(sp)
+	addi	s0, sp, 16
+	sw	a0, -12(s0)
+	sw	a1, -16(s0)
+	lw	a0, -12(s0)
+	lw	a1, -16(s0)
+	call	foo
+	slli	a0, a0, 1
+	lw	s0, 8(sp)
+	lw	ra, 12(sp)
+	addi	sp, sp, 16
+	ret
+.Lfunc_end1:
+	.size	bar_1, .Lfunc_end1-bar_1
+
 	.globl	main
 	.p2align	2
 	.type	main,@function
@@ -56,8 +77,8 @@ main:
 	lw	ra, 12(sp)
 	addi	sp, sp, 16
 	ret
-.Lfunc_end1:
-	.size	main, .Lfunc_end1-main
+.Lfunc_end2:
+	.size	main, .Lfunc_end2-main
 
 	.ident	"Ubuntu clang version 12.0.0-3ubuntu1~20.04.5"
 	.section	".note.GNU-stack","",@progbits
