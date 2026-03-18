@@ -162,3 +162,62 @@ Disassembly of section .text:
    11190: 67 80 00 00  	jalr	zero, 0(ra)
 ```  
 
+# Оптимизации  
+## O1  
+```asm
+bin/basic:      file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+000110b4 <foo>:
+   110b4: 63 c4 a5 00   blt     a1, a0, 0x110bc <.LBB0_2>
+   110b8: b3 05 b0 40   sub     a1, zero, a1
+
+000110bc <.LBB0_2>:
+   110bc: 33 85 a5 00   add     a0, a1, a0
+   110c0: 67 80 00 00   jalr    zero, 0(ra)
+
+000110c4 <bar_1>:
+   110c4: 13 01 01 ff   addi    sp, sp, -16
+   110c8: 23 26 11 00   sw      ra, 12(sp)
+   110cc: 97 00 00 00   auipc   ra, 0
+   110d0: e7 80 80 fe   jalr    ra, -24(ra)
+   110d4: 13 15 15 00   slli    a0, a0, 1
+   110d8: 83 20 c1 00   lw      ra, 12(sp)
+   110dc: 13 01 01 01   addi    sp, sp, 16
+   110e0: 67 80 00 00   jalr    zero, 0(ra)
+
+000110e4 <main>:
+   110e4: 13 05 00 00   addi    a0, zero, 0
+   110e8: 67 80 00 00   jalr    zero, 0(ra)
+```  
+
+## O2 и O3    
+```asm
+bin/basic:      file format elf32-littleriscv
+
+
+Disassembly of section .text:
+
+000110b4 <foo>:
+   110b4: 63 c4 a5 00   blt     a1, a0, 0x110bc <.LBB0_2>
+   110b8: b3 05 b0 40   sub     a1, zero, a1
+
+000110bc <.LBB0_2>:
+   110bc: 33 85 a5 00   add     a0, a1, a0
+   110c0: 67 80 00 00   jalr    zero, 0(ra)
+
+000110c4 <bar_1>:
+   110c4: 63 c4 a5 00   blt     a1, a0, 0x110cc <.LBB1_2>
+   110c8: b3 05 b0 40   sub     a1, zero, a1
+
+000110cc <.LBB1_2>:
+   110cc: 33 85 a5 00   add     a0, a1, a0
+   110d0: 13 15 15 00   slli    a0, a0, 1
+   110d4: 67 80 00 00   jalr    zero, 0(ra)
+
+000110d8 <main>:
+   110d8: 13 05 00 00   addi    a0, zero, 0
+   110dc: 67 80 00 00   jalr    zero, 0(ra)
+```
