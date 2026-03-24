@@ -161,6 +161,10 @@ Disassembly of section .text:
    ; прыжок на адрес в ra
    11190: 67 80 00 00  	jalr	zero, 0(ra)
 ```  
+  
+# Покрытие  
+![[coverage_1.png]]
+![[coverage_2.png]]  
 
 # Оптимизации  
 ## O1  
@@ -197,7 +201,7 @@ Disassembly of section .text:
    110e4: 13 05 00 00   addi    a0, zero, 0
    110e8: 67 80 00 00   jalr    zero, 0(ra)
 ```  
-
+  
 ## O2 и O3    
 ```asm
 bin/basic:      file format elf32-littleriscv
