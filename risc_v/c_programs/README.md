@@ -161,10 +161,6 @@ Disassembly of section .text:
    ; прыжок на адрес в ra
    11190: 67 80 00 00  	jalr	zero, 0(ra)
 ```  
-  
-# Покрытие  
-![[coverage_1.png]]
-![[coverage_2.png]]  
 
 # Оптимизации  
 ## O1  
@@ -255,3 +251,7 @@ Disassembly of section .text:
    110cc: 67 80 00 00   jalr    zero, 0(ra)
 ```
 Скорее всего потому, что поскольку она статичная, значит никакие другие translation unit не могут её использовать. А так как bar_1 итак напрямую содержит её код, то можно её убрать. Но это лишь предположение.  
+  
+# Покрытие  
+![coverage_1](coverage_1.png)
+![coverage_2](coverage_2.png)  
