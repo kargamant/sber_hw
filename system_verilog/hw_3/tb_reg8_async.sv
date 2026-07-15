@@ -28,6 +28,8 @@ module tb_reg8_async;
 
     initial begin
 
+		#100;
+
         rst_n = 0;
         d = 0;
 
